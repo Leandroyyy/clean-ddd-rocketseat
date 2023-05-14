@@ -1,0 +1,22 @@
+{
+  "name": "clean-ddd-rocketseat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "Leandro Cavallari",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.1.4",
+    "typescript": "^5.0.4",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.31.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  }
+}
