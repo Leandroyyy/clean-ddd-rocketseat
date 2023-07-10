@@ -3,9 +3,6 @@ import { AnswersRepository } from "@/domain/forum/application/repositories/answe
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 
 export class InMemoryAnswerRepository implements AnswersRepository {
-  findManyByTopicId(params: PaginationParams): Promise<Answer[]> {
-    throw new Error("Method not implemented.");
-  }
   public items: Answer[] = [];
 
   async findById(id: string) {

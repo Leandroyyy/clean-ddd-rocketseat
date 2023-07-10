@@ -1,16 +1,16 @@
 import { InMemoryAnswerRepository } from "test/repositories/in-memory-answers-repository";
 import { makeAnswer } from "test/factories/make-answer";
 import { CommentOnAnswerUseCase } from "./comment-on-answer";
-import { InMemoryAnswerCommentRepository } from "test/repositories/in-memory-answer-comments-repository";
+import { InMemoryAnswersCommentRepository } from "test/repositories/in-memory-answer-comments-repository";
 
 let inMemoryAnswerRepository: InMemoryAnswerRepository;
-let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentRepository;
+let inMemoryAnswerCommentsRepository: InMemoryAnswersCommentRepository;
 let sut: CommentOnAnswerUseCase;
 
 describe("Choose Answer Best Answer", () => {
   beforeEach(() => {
     inMemoryAnswerRepository = new InMemoryAnswerRepository();
-    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentRepository();
+    inMemoryAnswerCommentsRepository = new InMemoryAnswersCommentRepository();
     sut = new CommentOnAnswerUseCase(
       inMemoryAnswerRepository,
       inMemoryAnswerCommentsRepository
