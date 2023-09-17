@@ -1,5 +1,5 @@
-import { QuestionComment } from '../../enterprise/entities/question-comment';
-import { QuestionCommentsRepository } from '../repositories/question-comments-repository';
+import { QuestionComment } from '../../enterprise/entities/question-comment'
+import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
 
 interface FetchQuestionCommentsUseCaseRequest {
   questionId: string
@@ -15,9 +15,12 @@ export class FetchQuestionCommentsUseCase {
 
   async execute({
     questionId,
-    page
+    page,
   }: FetchQuestionCommentsUseCaseRequest): Promise<FetchQuestionCommentsUseCaseResponse> {
-    const questionComments = await this.questionCommentsRepository.findManyByQuestionId(questionId ,{ page });
+    const questionComments =
+      await this.questionCommentsRepository.findManyByQuestionId(questionId, {
+        page,
+      })
 
     return {
       questionComments,

@@ -12,21 +12,20 @@ export class DeleteAnswerUseCase {
 
   async execute({
     authorId,
-    answerId
+    answerId,
   }: DeleteAnswerUseCaseRequest): Promise<DeleteAnswerUseCaseResponse> {
-    const answer = await this.answersRepository.findById(answerId);
+    const answer = await this.answersRepository.findById(answerId)
 
-    if(!answer){
+    if (!answer) {
       throw new Error('Answer not found.')
     }
 
-    if(authorId !== answer.authorId.toString()){
+    if (authorId !== answer.authorId.toString()) {
       throw new Error('Not Allowed.')
     }
 
-    await this.answersRepository.delete(answer);
+    await this.answersRepository.delete(answer)
 
-    return {
-    }
+    return {}
   }
 }

@@ -19,25 +19,25 @@ export class EditQuestionUseCase {
     authorId,
     questionId,
     content,
-    title
+    title,
   }: EditQuestionUseCaseRequest): Promise<EditQuestionUseCaseResponse> {
-    const question = await this.questionsRepository.findById(questionId);
+    const question = await this.questionsRepository.findById(questionId)
 
-    if(!question){
+    if (!question) {
       throw new Error('Question not found.')
     }
 
-    if(authorId !== question.authorId.toString()){
+    if (authorId !== question.authorId.toString()) {
       throw new Error('Not Allowed.')
     }
 
     question.title = title
     question.content = content
 
-    await this.questionsRepository.save(question);
+    await this.questionsRepository.save(question)
 
     return {
-      question
+      question,
     }
   }
 }
