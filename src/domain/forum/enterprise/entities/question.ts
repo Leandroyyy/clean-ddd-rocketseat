@@ -1,8 +1,9 @@
-import { Slug } from './value-objects/slug'
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 import dayjs from 'dayjs'
+import { QuestionAttachmentList } from './question-attachment-list'
+import { Slug } from './value-objects/slug'
 
 export interface QuestionProps {
   authorId: UniqueEntityId
@@ -10,19 +11,21 @@ export interface QuestionProps {
   title: string
   slug: Slug
   content: string
+  attachments: QuestionAttachmentList
   createdAt: Date
   updatedAt?: Date
 }
 
 export class Question extends Entity<QuestionProps> {
   static create(
-    props: Optional<QuestionProps, 'createdAt' | 'slug'>,
+    props: Optional<QuestionProps, 'createdAt' | 'slug' | 'attachments'>,
     id?: UniqueEntityId,
   ) {
     const question = new Question(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
+        attachments: props.attachments ?? new QuestionAttachmentList(),
         slug: props.slug ?? Slug.createFromText(props.title),
       },
       id,
@@ -55,6 +58,10 @@ export class Question extends Entity<QuestionProps> {
     return this.props.content
   }
 
+  get attachments() {
+    return this.props.attachments
+  }
+
   get createdAt() {
     return this.props.createdAt
   }
@@ -73,6 +80,11 @@ export class Question extends Entity<QuestionProps> {
 
   set content(content: string) {
     this.props.content = content
+    this.touch()
+  }
+
+  set attachments(attachments: QuestionAttachmentList) {
+    this.props.attachments = attachments
     this.touch()
   }
 
