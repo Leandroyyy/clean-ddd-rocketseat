@@ -25,7 +25,7 @@ describe('Edit Answer', () => {
     )
   })
 
-  it('should be able to edit a answer', async () => {
+  it('should be able to edit an answer', async () => {
     const newAnswer = makeAnswer(
       {
         authorId: new UniqueEntityId('author-1'),
@@ -65,7 +65,7 @@ describe('Edit Answer', () => {
     ])
   })
 
-  it('should not be able to edit a answer from another user', async () => {
+  it('should not be able to edit an answer from another user', async () => {
     const newAnswer = makeAnswer(
       {
         authorId: new UniqueEntityId('author-1'),
